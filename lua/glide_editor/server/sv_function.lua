@@ -32,12 +32,12 @@ function GLide_Editor:SpawnVehicle( pPlayer, sModel, tSettings, tWheels, tSeats 
 end
 
 function GLide_Editor:UpdateWheel( eVehicle, iID, vOffset, tParams )
-    print("Updating wheel " , iID , " with offset " , vOffset , " and params " , tParams)
-    print(eVehicle, iID, vOffset, tParams)
+    print("GLide_Editor:UpdateWheel() = ", eVehicle, iID, vOffset, tParams)
     if IsValid(eVehicle.wheels[iID]) then
         eVehicle.wheels[iID]:SetupWheel(tParams)
         eVehicle.wheels[iID]:SetPos(eVehicle:LocalToWorld(vOffset))
     else
+        print("GLide_Editor:UpdateWheel() = Creating new wheel ", iID, " for vehicle ", eVehicle)
         eVehicle:CreateWheel(vOffset, tParams)
     end
 end
