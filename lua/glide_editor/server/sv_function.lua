@@ -48,3 +48,22 @@ function GLide_Editor:GetWheel( eVehicle, iID )
 
     return eVehicle.wheels[iID]
 end
+
+/*
+    NOTIFY_GENERIC	= 0
+    NOTIFY_ERROR	= 1
+    NOTIFY_UNDO		= 2
+    NOTIFY_HINT		= 3
+    NOTIFY_CLEANUP	= 4
+*/
+
+function GLide_Editor:Notify(pPlayer, sMessage, iType, iDuration)
+    if not IsValid(pPlayer) then return end
+    if not sMessage or sMessage == "" then return end
+
+    net.Start("GLide_Editor:Notify")
+        net.WriteString(sMessage)
+        net.WriteUInt(iType or 0, 8)
+        net.WriteUInt(iDuration or 5, 8)
+    net.Send(pPlayer)
+end

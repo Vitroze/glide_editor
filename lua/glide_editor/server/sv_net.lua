@@ -3,6 +3,7 @@ util.AddNetworkString( "GLide_Editor:GetVehicle" )
 util.AddNetworkString( "GLide_Editor:UpdateWheel" )
 util.AddNetworkString( "GLide_Editor:SelectWheel" )
 util.AddNetworkString( "GLide_Editor:RemoveWheel" )
+util.AddNetworkString( "GLide_Editor:Notify" )
 
 net.Receive( "GLide_Editor:SpawnVehicle", function( _, pPlayer )
     if not IsValid( pPlayer ) then return end
@@ -88,6 +89,7 @@ net.Receive( "GLide_Editor:RemoveWheel", function( _, pPlayer )
         eVehicle.wheels[iID]:Remove()
         table.remove( eVehicle.wheels, iID )
 
-        eVehicle.wheelCount = eVehicle.wheelCount - 1
+        eVehicle.wheelCount = table.Count( eVehicle.wheels )
+        GLide_Editor:Notify( pPlayer, ("Removed wheel %d from vehicle %s. Total wheels: %d"):format( iID, eVehicle:GetClass(), eVehicle.wheelCount ), 0, 5 )
     end
 end )

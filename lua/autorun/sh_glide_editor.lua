@@ -37,6 +37,7 @@ end
 loadClient(sDirectory .. "client/cl_hook.lua")
 loadClient(sDirectory .. "client/cl_menu.lua")
 loadClient(sDirectory .. "client/cl_function.lua")
+loadClient(sDirectory .. "client/cl_net.lua")
 
 loadServer(sDirectory .. "server/sv_hook.lua")
 loadServer(sDirectory .. "server/sv_net.lua")
