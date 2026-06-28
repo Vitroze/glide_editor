@@ -63,7 +63,7 @@ if SERVER then
         -- self:CreateSeat( Vector( -26, 18, -13 ), Angle( 0, 270, -5 ), Vector( 40, 80, 0 ), true )
         -- self:CreateSeat( Vector( -8, -18, -18 ), Angle( 0, 270, 5 ), Vector( -40, -80, 0 ), true )
 
-        if self.tWheels then
+        if istable( self.tWheels ) and self.tWheels["Wheels"] then
             for _, tWheel in ipairs( self.tWheels["Wheels"] ) do
                 self:CreateWheel( tWheel.pos, tWheel.settings )
             end
@@ -74,7 +74,7 @@ if SERVER then
         end
 
         if self.tSeats then
-            for _, tSeat in ipairs( self.tSeats["Seats"] ) do
+            for _, tSeat in ipairs( self.tSeats ) do
                 self:CreateSeat( tSeat.pos, tSeat.angle, tSeat.modelScale, tSeat.isDriver )
             end
         end
